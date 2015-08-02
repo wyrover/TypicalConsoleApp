@@ -1,0 +1,44 @@
+# Makefile for Digital Mars C/C++ Compiler
+# Usage: make -f Makefile.dmc
+
+DOTEXE = .exe
+DOTOBJ = .obj
+
+DEF1 = -o -DNDEBUG=1
+#DEF1 = -D -g -D_DEBUG=1
+
+DEF2 = -DMBCS -D_MBCS
+#DEF2 = -DUNICODE -D_UNICODE
+#DEF2 = -DANSI -D_ANSI
+
+CXX = dmc
+CXXFLAGS = -Ae -cpp $(DEF1) $(DEF2)
+
+RC = rcc
+RCFLAGS = -32
+
+OBJS = TypicalConsoleApp$(DOTOBJ) TypicalConsoleApp.res
+LIBS = gdi32.lib shell32.lib
+
+all: TypicalConsoleApp$(DOTEXE)
+
+TypicalConsoleApp$(DOTEXE): $(OBJS)
+	$(CXX) $(CXXFLAGS) -eTypicalConsoleApp$(DOTEXE) $(OBJS) $(LIBS)
+
+TypicalConsoleApp$(DOTOBJ): stdafx.h TypicalConsoleApp.cpp
+	$(CXX) $(CXXFLAGS) -c TypicalConsoleApp.cpp
+
+TypicalConsoleApp.res: TypicalConsoleApp.rc
+	$(RC) $(RCFLAGS) TypicalConsoleApp.rc
+
+clean:
+	if exist *.o del *.o
+	if exist *.obj del *.obj
+	if exist *.res del *.res
+	if exist *.tds del *.tds
+	if exist *.map del *.map
+	if exist *.sdf del *.sdf
+	if exist *.suo del /A:H *.suo
+	if exist *.opensdf del *.opensdf
+	if exist *.user del *.user
+	if exist *.filters del *.filters
