@@ -1,9 +1,13 @@
 #include "stdafx.h"
 
+// the program name
+#define PROGNAME    "TypicalConsoleApp"
+
 // the application
 struct ConsoleApp {
-    int                         m_argc;
-    char **                     m_argv;
+    int                         m_argc;     // number of command line parameters
+    char **                     m_argv;     // command line parameters
+
     std::vector<std::string>    m_items;    // target items
     std::string                 m_option;
 

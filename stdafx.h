@@ -11,7 +11,9 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
-#include <tchar.h>
+#ifdef _WIN32
+    #include <tchar.h>
+#endif
 
 // C++ headers
 #include <string>

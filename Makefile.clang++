@@ -1,0 +1,37 @@
+# Makefile for 32-bit clang++
+# Usage: make -f Makefile.clang++
+
+DOTEXE = 
+DOTOBJ = .o
+
+DEF1 = -O3 -DNDEBUG
+#DEF1 = -g -ggdb -D_DEBUG
+
+DEF2 = -DMBCS -D_MBCS
+#DEF2 = -municode -DUNICODE -D_UNICODE
+#DEF2 = -DANSI -D_ANSI
+
+CXX = clang++
+CXXFLAGS = -static -m32 -std=c++11 -pedantic -Wall $(DEF1) $(DEF2)
+
+OBJS = TypicalConsoleApp$(DOTOBJ)
+
+all: TypicalConsoleApp$(DOTEXE)
+
+TypicalConsoleApp$(DOTEXE): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o TypicalConsoleApp$(DOTEXE) $(OBJS)
+
+TypicalConsoleApp$(DOTOBJ): TypicalConsoleApp.cpp
+	$(CXX) $(CXXFLAGS) -c TypicalConsoleApp.cpp
+
+clean:
+	rm -f *.o
+	rm -f *.obj
+	rm -f *.res
+	rm -f *.tds
+	rm -f *.map
+	rm -f *.sdf
+	rm -f *.suo
+	rm -f *.opensdf
+	rm -f *.user
+	rm -f *.filters

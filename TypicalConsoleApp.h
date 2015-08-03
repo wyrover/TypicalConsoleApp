@@ -8,7 +8,4 @@
     typedef std::string tstring;
 #endif
 
-// the program name
-#define PROGNAME "TypicalConsoleApp"
-
 #endif  // ndef TYPICALCONSOLEAPP_H
